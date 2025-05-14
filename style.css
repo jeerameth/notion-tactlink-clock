@@ -12,8 +12,10 @@ body {
     display: grid;
     grid-template-columns: auto repeat(auto-fit, minmax(150px, 1fr));
     grid-auto-rows: min-content;
-    padding: 20px;
-    gap: 15px;
+    padding: 10px;
+    /* Reduced padding around the grid */
+    gap: 8px;
+    /* Reduced gap between clocks */
     width: 100%;
     max-width: 900px;
 }
@@ -22,12 +24,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px;
+    padding: 8px;
+    /* Further reduced padding inside clocks */
     background-color: darkgrey;
     border-radius: 5px;
     text-align: center;
     color: lightgrey;
     box-sizing: border-box;
+    border: none;
+    /* Removed border */
+    box-shadow: none;
+    /* Ensured box shadow is removed */
 }
 
 .grid-item-large {
@@ -39,58 +46,65 @@ body {
     justify-content: flex-start;
     /* Align items to the top */
     align-items: center;
-    padding: 15px;
+    padding: 10px;
+    /* Further reduced padding */
 }
 
 .logo-container {
     background-color: white;
-    border-radius: 10px;
-    /* Rounded corners */
-    padding: 10px;
-    margin-bottom: 10px;
-    margin-top: 20px;
+    border-radius: 8px;
+    padding: 6px;
+    /* Further reduced padding */
+    margin-bottom: 12px;
+    /* Further reduced margin */
+    /* margin-top: 10px; Removed top margin */
     display: flex;
     justify-content: center;
     /* Center logo */
     align-items: center;
-    width: 80px;
-    /* Adjust logo background width */
-    height: 80px;
-    /* Adjust logo background height */
+    width: 60px;
+    /* Increased background size */
+    height: 60px;
+    /* Increased background size */
 }
 
 .logo-container img {
-    max-width: 100px;
+    max-width: 120px;
     /* Adjust logo size */
-    max-height: 100px;
+    max-height: 120px;
 }
 
 .grid-item-large .hq {
-    font-size: 1.2em;
-    /* Big font */
+    font-size: 0.9em;
+    /* Further reduced font size */
     color: black;
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
+    /* Further reduced margin */
+    font-weight: bold;
+    /* Made text bold */
 }
 
 .grid-item-large .time {
-    font-size: 2.5em;
-    /* Big font */
+    font-size: 1.8em;
+    /* Further reduced font size */
     color: black;
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
+    /* Further reduced margin */
 }
 
 .grid-item-large .country {
-    font-size: 1em;
+    font-size: 0.8em;
+    /* Further reduced font size */
     color: black;
     text-align: center;
 }
 
 .singapore-clock.grid-item-large {
-    background-color: #efc94a;
+    /*     background-color: #efc94a; */
+    background-color: white;
     color: black;
-    /* Redundant here as individual elements are styled */
 }
 
 .thailand-clock.grid-item,
@@ -106,24 +120,23 @@ body {
 }
 
 .country {
-    font-size: 0.9em;
+    font-size: 0.7em;
+    /* Further reduced font size */
     font-weight: bold;
-    margin-bottom: 3px;
+    margin-bottom: 1px;
+    /* Further reduced margin */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .time {
-    font-size: 1.2em;
-}
-
-.hq {
-    font-size: 1.2em;
-    font-weight: bold;
+    font-size: 0.9em;
+    /* Further reduced font size */
 }
 
 .time-diff {
-    font-size: 0.7em;
+    font-size: 0.5em;
+    /* Further reduced font size */
     color: #ccc;
 }
