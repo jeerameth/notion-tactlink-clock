@@ -4,7 +4,7 @@ function updateClock() {
     const largeItem = container.querySelector('.grid-item-large');
     const regularItems = clockElements.filter(item => !item.classList.contains('grid-item-large'));
 
-    // Update Singapore clock with seconds
+    // Update Singapore clock
     const singaporeTimeElement = largeItem.querySelector('.time');
     const singaporeTimezone = largeItem.dataset.timezone;
     const nowSingapore = new Date();
@@ -35,13 +35,15 @@ function updateClock() {
 
         timeElement.textContent = new Intl.DateTimeFormat('en-US', timeOptions).format(now);
 
-        const targetDate = new Date().toLocaleString('en-US', { timeZone: timezone });
-        const targetTime = new Date(targetDate).getTime();
-        clockElement.dataset.sortOffset = targetTime;
+        // No need to get the numeric timezone offset anymore for time display
     });
 
-    // Sort the regular clock elements
-    regularItems.sort((a, b) => parseInt(a.dataset.sortOffset) - parseInt(b.dataset.sortOffset));
+    // Sort the regular clock elements (based on local time for now, as timezone offset removal was requested)
+    regularItems.sort((a, b) => {
+        const timeA = new Date().toLocaleString('en-US', { timeZone: a.dataset.timezone, hourCycle: 'h24', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const timeB = new Date().toLocaleString('en-US', { timeZone: b.dataset.timezone, hourCycle: 'h24', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        return new Date(`2000/01/01 ${timeA.split(' ')[1]}`).getTime() - new Date(`2000/01/01 ${timeB.split(' ')[1]}`).getTime();
+    });
 
     // Clear the container (except the large item)
     container.innerHTML = '';
@@ -61,8 +63,8 @@ function adjustGrid() {
     updateClock(); // Re-calculate and re-layout on resize
 }
 
-// Update the clock every second for Singapore, every minute for others
-setInterval(updateClock, 1000); // Update every second
+// Update the clock every second
+setInterval(updateClock, 1000);
 
 // Initial call to display and sort the time immediately
 updateClock();
